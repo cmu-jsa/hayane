@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import working from '../../public/working.gif';
+import sleeping from '../../public/sleep.gif'
 
 
 const styles = {
@@ -64,7 +65,9 @@ export default class DropDown extends Component {
         });
       }
       
-     
+      imageSleep(){
+        <img src={sleeping} alt="loading..." /> 
+      }
       render() {
         return (
           <div>
@@ -76,9 +79,9 @@ export default class DropDown extends Component {
               this.state.showMenu
                 ? (
                   <div className="menu" style = {styles.menu}>
-                    <button class="nes-btn is-primary"> Menu item 1 </button>
-                    <button class="nes-btn is-primary"> Menu item 2 </button>
-                    <button class="nes-btn is-primary"> Menu item 3 </button>
+                    <button class="nes-btn is-primary">Sleeping </button>
+                    <button class="nes-btn is-primary"> Studying </button>
+                    <button class="nes-btn is-primary"> Alive </button>
                   </div>
                 )
                 : (

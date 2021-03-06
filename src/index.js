@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import PopUp from "./components/popUp";
 import DropDown from "./components/DropDown";
+import Mado from "./components/window"
 import "nes.css/css/nes.min.css";
 
 function yay(){
@@ -10,8 +11,6 @@ function yay(){
             <p style = {paragraph}>Good morning. Thou hast had a good night's sleep, I hope.</p>
         </div>);
 }
-
-  
 class Board extends React.Component {
   
   
@@ -32,7 +31,6 @@ const paragraph = {
     fontWeight: 'normal',
     fontStyle: 'normal',
 };
-
   class Game extends React.Component {
     state = {
         seen: false
@@ -49,10 +47,11 @@ const paragraph = {
       return (
         
         <div className="game">
+          
         <div className="btn" >
             <button className = "nes-btn is-primary" onClick = {this.togglePop}>Hello?</button>
         </div>
-            
+            <Mado/>
           <div className="game-board">
           <div class="nes-container with-title is-centered">
             <p style = {paragraph}>Good morning. Thou hast had a good night's sleep, I hope.</p>
@@ -68,6 +67,7 @@ const paragraph = {
               <DropDown/>
           </div>
         </div>
+        
       );
     }
   }
