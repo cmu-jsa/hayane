@@ -1,0 +1,50 @@
+html {
+    height: 100%;
+    font-size: 10px;
+}
+
+body {
+    background-color: #272E47;
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+.title {
+    text-align: center;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 50px;
+    text-align: center;
+}
+
+.nav-list li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav-list li a {
+    transition: all 0.5s;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.nav-list li a:hover {
+    color: grey;
+}
+  
