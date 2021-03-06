@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path')
 const favicon = require('serve-favicon');
+const ws= require('ws');
 
 
 const app = express();
@@ -15,3 +16,13 @@ app.get('/*', (req, res, next) => {
 });
 
 app.listen(PORT);
+
+const WebSocketServer = ws.Server,
+
+wss = new WebSocketServer({port: 40510})
+
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
+    console.log('received: %s', message)
+  })
+})
