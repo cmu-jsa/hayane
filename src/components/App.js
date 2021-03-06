@@ -1,6 +1,7 @@
 import React from 'react';
 import PopUp from "./popUp";
 import DropDown from "./DropDown";
+import Mado from "./Mado";
 import "nes.css/css/nes.min.css";
 
 
@@ -25,6 +26,7 @@ export default class App extends React.Component {
     state = {
       seen: false,
       name: 'hi',
+      currState : 0,
     };
   
     
@@ -37,13 +39,16 @@ export default class App extends React.Component {
     callbackFunction = (childData) => {
       this.setState({name: childData})
     };
+    callbackFunction2 = (childData) => {
+      this.setState({currState: childData})
+    };
     render() {
         
       return (
         
         <div className="game">
         <div className="btn" >
-            <button className = "nes-btn is-primary" onClick = {this.togglePop}>Hello?</button>
+            <button className = "nes-btn is-primary" onClick = {this.togglePop}>Edit your info</button>
         </div>
             
           <div className="game-board">
@@ -56,9 +61,13 @@ export default class App extends React.Component {
             <div>{/* status */}</div>
             <ol>{/* TODO */}</ol>
           </div>
-          {this.state.seen ? <PopUp value = {this.state.name} parentCallback = {this.callbackFunction} toggle={this.togglePop} /> : null}
+          {this.state.seen ? <PopUp  value = {this.state.name} parentCallback = {this.callbackFunction} toggle={this.togglePop} /> : null}
+          
           <div>
-              <DropDown/>
+            <Mado  value2 = {this.state.currState}/>
+          </div>
+          <div>
+              <DropDown name = {this.state.name} parentCallback = {this.callbackFunction2}/>
           </div>
         </div>
       );
