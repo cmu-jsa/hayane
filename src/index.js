@@ -1,7 +1,7 @@
-import React from 'react';
-import { render } from 'react-dom';
 
-import App from './components/App';
-import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import "nes.css/css/nes.min.css";
 
-render(<App />, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById("root"));
