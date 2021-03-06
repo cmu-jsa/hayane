@@ -1,43 +1,40 @@
 {
-  "name": "hayane",
-  "version": "1.0.0",
-  "description": "Hayane",
-  "main": "./src/index.js",
-  "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "dev": "webpack-dev-server --config webpack.dev.js",
-    "start": "webpack --config webpack.prod.js;open http://localhost:8080&node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cmu-jsa/hayane"
-  },
-  "author": "Japanese Student Association at CMU",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cmu-jsa/hayane/issues"
-  },
-  "homepage": "https://github.com/cmu-jsa/hayane#readme",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "express": "^4.17.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0",
-    "serve-favicon": "^2.5.0"
+    "react-helmet": "^6.1.0",
+    "react-onclickoutside": "^6.10.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
   },
-  "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^7.0.0",
-    "css-loader": "^5.0.1",
-    "file-loader": "^6.2.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.11.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.7.3"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
