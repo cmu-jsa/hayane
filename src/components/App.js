@@ -9,6 +9,18 @@ import {
 } from 'react-router-dom';
 
 const Main = () => {
+    const url = 'ws://localhost:40510'
+    const ws = new WebSocket(url)
+    
+    ws.onopen = function () {
+        console.log('websocket is connected ...')
+        ws.send(JSON.stringify({message: 'hi' , cmd: 'join' , dormid: '1'}))
+    }
+
+    ws.onmessage = function (ev) {
+        console.log(ev);
+    }
+
   return (
       <Router>
         <Switch>

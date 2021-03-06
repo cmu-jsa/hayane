@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path')
 const favicon = require('serve-favicon');
-const ws= require('ws');
+const ws = require('ws');
+const { v4: uuidv4 } = require('uuid');
 
+// Express server
 
 const app = express();
 
@@ -17,12 +19,35 @@ app.get('/*', (req, res, next) => {
 
 app.listen(PORT);
 
-const WebSocketServer = ws.Server,
+// Websocket server
 
-wss = new WebSocketServer({port: 40510})
+wss = new ws.Server({port: 40510})
 
-wss.on('connection', (ws) => {
-  ws.on('message', (message) => {
-    console.log('received: %s', message)
-  })
-})
+dorms = {}
+
+wss.on('connection', (socket) => {
+    const uuid = uuidv4();
+  
+    const leave = (dormid) => {
+        if(!dorms[dormid][uuid]) return;
+        if(Object.keys(dorms[dormid]).length === 1) delete rooms[room];
+        else delete dorms[dormid][uuid];
+    };
+  
+    socket.on('message', data => {
+        const { message, cmd, dormid } = JSON.parse(data);
+        if (cmd === 'join') {
+            console.log(message)
+            console.log(cmd)
+            console.log(dormid)
+            if(!dorms[dormid]) dorms[dormid] = {}; // create the room
+            if(!dorms[dormid][uuid]) dorms[dormid][uuid] = socket; // join the room
+        }
+        else if(cmd === 'leave') {
+            leave(dormid);
+        }
+        else if(cmd === 'status') {
+            Object.entries(dorms[dormid]).forEach(([, sock]) => sock.send({ message }));
+        }
+    });
+});
