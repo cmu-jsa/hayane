@@ -31,10 +31,23 @@ const styles = {
 
 
 export default class popUp extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            inputValue: this.props.value,
+        };
+        console.log(this.props.value);
+    }
     handleClick = () => {
         this.props.toggle();
+        this.props.parentCallback(this.state.inputValue);
     };
     
+   updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+  }
     render(){
         return (
             <div className="modal" style = {styles.modal}>
@@ -49,10 +62,11 @@ export default class popUp extends Component{
                     <form>
                         <h3>Please fill out</h3>
                         <div class="nes-field">
-                            <label for="name_field">Name</label>
-                            <input type="text" id="name_field" class="nes-input"/>
+                            
+                            <label htmlFor="name_field">Name</label>
+                            <input type="text" onChange={evt => this.updateInputValue(evt)} class="nes-input"/>
     
-                            <input type="submit"/>
+                            <input type="submit" onClick={this.handleClick}/>
                         </div>
                     </form>
    
@@ -61,6 +75,9 @@ export default class popUp extends Component{
             </div>
         )
     }
+
+    
+    
 
 
 }

@@ -15,15 +15,23 @@ const paragraph = {
 };
 
 export default class App extends React.Component {
+
+ 
     state = {
-        seen: false
+      seen: false,
+      name: 'hi',
     };
+  
+    
     togglePop = () => {
         this.setState({
             seen: !this.state.seen
         });
+    
     };
-
+    callbackFunction = (childData) => {
+      this.setState({name: childData})
+    };
     render() {
         
       return (
@@ -35,7 +43,7 @@ export default class App extends React.Component {
             
           <div className="game-board">
           <div class="nes-container with-title is-centered">
-            <p style = {paragraph}>Good morning. Thou hast had a good night's sleep, I hope.</p>
+            <p style = {paragraph}> HI, {this.state.name}! Good morning. Thou hast had a good night's sleep, I hope.  </p>
             </div>
     
           </div>
@@ -43,7 +51,7 @@ export default class App extends React.Component {
             <div>{/* status */}</div>
             <ol>{/* TODO */}</ol>
           </div>
-          {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
+          {this.state.seen ? <PopUp value = {this.state.name} parentCallback = {this.callbackFunction} toggle={this.togglePop} /> : null}
           <div>
               <DropDown/>
           </div>
