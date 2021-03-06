@@ -12,7 +12,12 @@ const paragraph = {
     fontFamily: 'PressStart2PRegular',
     fontWeight: 'normal',
     fontStyle: 'normal',
+    backgroundColor: 'white',
 };
+const white = {
+  backgroundColor: 'white',
+};
+
 
 export default class App extends React.Component {
 
@@ -42,7 +47,7 @@ export default class App extends React.Component {
         </div>
             
           <div className="game-board">
-          <div class="nes-container with-title is-centered">
+          <div class="nes-container with-title is-centered" style={white} >
             <p style = {paragraph}> HI, {this.state.name}! Good morning. Thou hast had a good night's sleep, I hope.  </p>
             </div>
     
