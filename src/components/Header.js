@@ -28,7 +28,7 @@ const Header = (props) => {
         <div class="header">
             <div className="game-board">
                 <div class="nes-container with-title is-centered" style={white} >
-                    <p style = {paragraph}> HI, {name}! Good morning. Thou hast had a good night's sleep, I hope.  </p>
+                    <p style = {paragraph}> Hi, {name}! I hope you're having a pleasant evening. </p>
                 </div>
             </div>
             <div className="btn" >
