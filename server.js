@@ -3,7 +3,7 @@ const path = require('path')
 const favicon = require('serve-favicon');
 const ws = require('ws');
 const { v4: uuidv4 } = require('uuid');
-const http = require('http');
+const https = require('https');
 
 // Express server
 
@@ -20,9 +20,9 @@ app.get('/*', (req, res, next) => {
 
 // Websocket server
 
-const httpServer = http.createServer(app)
+const httpsServer = https.createServer(app)
 
-wss = new ws.Server({'server': httpServer})
+wss = new ws.Server({'server': httpsServer})
 
 dorms = {}
 
@@ -78,4 +78,4 @@ wss.on('connection', (socket) => {
     });
 });
 
-httpServer.listen(PORT);
+httpsServer.listen(PORT);
