@@ -71,7 +71,7 @@ wss.on('connection', (socket) => {
             leave(dormId);
         } else if(cmd === 'update') {
             Object.entries(dorms[dormId]).forEach(([, d]) => {
-                d['socket'].send(JSON.stringify({ uuid: uuid, name: name, status: status }))
+                d['socket'].send(JSON.stringify({ cmd: 'update', uuid: uuid, name: name, status: status }))
             });
         }
     });
