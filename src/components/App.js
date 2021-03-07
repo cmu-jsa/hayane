@@ -18,7 +18,7 @@ const App = () => {
     const [userState, setCurrState] = React.useState(0);
 
     const hostname = window.location.hostname;
-    const ws = new WebSocket('wss://' + hostname + ':40510')
+    const ws = new WebSocket('wss://' + hostname + ':8080')
 
     ws.onopen = () => {
         console.log('connected to websocket')

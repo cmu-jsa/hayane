@@ -19,7 +19,7 @@ app.get('/*', (req, res, next) => {
 
 // Websocket server
 
-wss = new ws.Server({port: 40510})
+wss = new ws.Server({server: app})
 
 dorms = {}
 
