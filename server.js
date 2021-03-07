@@ -36,7 +36,7 @@ wss.on('connection', (socket) => {
     };
 
     socket.on('message', data => {
-        const { cmd, dormId, name, status } = JSON.parse(data);
+        const { cmd, dormId, name, status, curUuid } = JSON.parse(data);
         if (cmd === 'create') {
             // Create new dorm
             const newDormId = uuidv4();
@@ -69,13 +69,13 @@ wss.on('connection', (socket) => {
         } else if(cmd === 'leave') {
             leave(dormId);
         } else if(cmd === 'update') {
-            dorms[dormId][uuid]['data'] = [name, status];
+            dorms[dormId][[curUuid]]['data'] = [name, status];
             let resData = {}
-            Object.entries(dorms[dormId]).forEach(([uuid,d]) => {
-                resData[uuid] = d['data']
+            Object.entries(dorms[dormId]).forEach(([_uuid,d]) => {
+                resData[_uuid] = d['data']
             });
             Object.entries(dorms[dormId]).forEach(([, d]) => {
-                d['socket'].send(JSON.stringify({ cmd: 'update',data: resData }))
+                d['socket'].send(JSON.stringify({ cmd: 'update', data: resData }))
             });
         }
     });
