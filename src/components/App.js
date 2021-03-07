@@ -15,12 +15,22 @@ const paragraph = {
 const App = () => {
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
+    const [curDormId, setCurDormId] = React.useState(0);
 
+    // Connect to websocket
     const hostname = window.location.hostname;
     const ws = new WebSocket('ws://' + hostname + ':40510')
 
     ws.onopen = () => {
         console.log('connected to websocket')
+        console.log(window.location.search)
+        const dormId = new URLSearchParams(window.location.search).get('dormId')
+        console.log(dormId)
+        if (dormId) {
+            setCurDormId(dormId);
+            joinRoom();
+            console.log('joined dorm ' + dormId)
+        }
     }
 
     ws.onmessage = (event) => {
@@ -28,11 +38,11 @@ const App = () => {
     }
 
     const createRoom = () => {
-        ws.send(JSON.stringify({cmd: 'create', dormId: 1, name: userName, status: userState}))
+        ws.send(JSON.stringify({cmd: 'create', dormId: 0, name: userName, status: userState}))
     }
 
     const joinRoom = () => {
-        ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: userName, status: userState}))
+        ws.send(JSON.stringify({cmd: 'join', dormId: curDormId, name: userName, status: userState}))
     }
 
     const togglePop = () => {
@@ -50,7 +60,7 @@ const App = () => {
     return ( 
             <>
 
-            <Header parentCallback = {newUserName}/>
+            <Header parentCallback = {newUserName} dormid={curDormId} socket={ws}/>
             <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
              <button onClick={createRoom}>CREATE</button>
              <button onClick={joinRoom}>JOIN</button>

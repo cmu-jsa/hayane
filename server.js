@@ -38,8 +38,7 @@ wss.on('connection', (socket) => {
         const { cmd, dormId, name, status } = JSON.parse(data);
         if (cmd === 'create') {
             // Create new dorm
-            // const newDormId = uuidv4();
-            const newDormId = 1;
+            const newDormId = uuidv4();
             dorms[newDormId] = {};
             dorms[dormId][uuid] = {};
             dorms[dormId][uuid]['socket'] = socket;

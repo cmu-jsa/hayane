@@ -21,8 +21,10 @@ const Header = (props) => {
         setName(childData);
         props.parentCallback(childData);
     };
-    
-  
+
+    const createRoom = () => {
+        ws.send(JSON.stringify({cmd: 'create', dormId: 0, name: userName, status: userState}))
+    }
  
     return(
         <div class="header">
@@ -31,8 +33,10 @@ const Header = (props) => {
                     <p style = {paragraph}> Hi, {name}! I hope you're having a pleasant evening. </p>
                 </div>
             </div>
-            <div className="btn" >
+            <div className="btn" style={{display: 'inline-block'}}>
                     <button className = "nes-btn is-primary" onClick = {togglePop}>Edit your info</button>
+                    { !props.dormId ? <button className = "nes-btn is-primary" onClick = {createRoom}>Create Dorm</button> : null }
+                    { !props.dormId ? <button className = "nes-btn is-primary" onClick = {togglePop}>Join Dorm</button> : null }
             </div>
             {isSeen ? <PopUp  value = {name} parentCallback = {callbackFunction} toggle={togglePop} /> : null}
 
