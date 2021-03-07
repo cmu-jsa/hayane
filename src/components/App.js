@@ -4,6 +4,7 @@ import Header from "./Header"
 import MainBody from "./MainBody";
 import "nes.css/css/nes.min.css";
 import Building from "../../public/buildings.svg"
+
 const paragraph = {
     fontFamily: 'PressStart2PRegular',
     fontWeight: 'normal',

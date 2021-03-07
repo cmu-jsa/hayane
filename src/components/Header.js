@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PopUp from "./popUp";
+import PopUp from "./PopUp";
 
 const paragraph = {
     fontFamily: 'PressStart2PRegular',

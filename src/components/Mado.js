@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import working from '../../public/work.gif';
 import sleeping from '../../public/sleep.gif';
 import alive from '../../public/awake.gif';
-import Bubble from "./bubble.js";
+import Bubble from "./Bubble.js";
 
 
 const Mado = (props) => {
