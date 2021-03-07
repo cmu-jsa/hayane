@@ -12,7 +12,7 @@ const Mado = (props) => {
     };
     const images = [working,sleeping,alive];
     const statuses = ["working","sleeping","alive"];
-
+    
     //const [currImage, setCurrImage] = React.useState(props.value2);
     return (
         <div>
