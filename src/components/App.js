@@ -20,7 +20,7 @@ const App = () => {
     const [currState, setCurrState] = React.useState(0);
     
     const togglePop = () => {
-        setIsSeen(!this.state.seen);
+        setIsSeen(!isSeen);
     };
     const callbackFunction = (childData) => {
         setName(childData);
