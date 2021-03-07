@@ -1,6 +1,6 @@
 ## Hayane
 ![Logo](https://github.com/cmu-jsa/hayane/blob/main/public/logo.png) <br/>
-Developed by Arnaud Avondet, Joey Wildman, Yuma Matsuoka, and Kent Shibata for Tartanhacks 2021. Hayane ("Early to Bed" in Japanese) is a companionship website that allows users to set a status in their virtual dorm to either studying, sleeping, or vibing. Students can join and leave the dorm on their own. Students get to see their fellow friends' statuses and build a sense of community no matter where they are. The app also encourages healthy sleeping habits by showing when students are "sleeping" as a form of peer motivation.
+Developed by Arnaud Avondet, Joey Wildman, Yuma Matsuoka, and Kent Shibata for Tartanhacks 2021. Hayane ("Early to Bed" in Japanese) is a companionship website that allows users to build camradarie with others through proximity developed like living together in a dorm. Students set a status in their virtual dorm to either studying, sleeping, or vibing, and can see their dormmate's statuses to build a sense of community no matter where they are. Students can join and leave their community dorm on their own. Additionally, Hayane promotes healthy sleeping habits by showing when students are "sleeping" as a form of peer motivation.
 
 
 ## Showcases
