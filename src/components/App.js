@@ -14,9 +14,6 @@ const paragraph = {
 
 
 const App = () => {
-
-    /*const [isSeen, setIsSeen] = React.useState(false);
-    const [name, setName] = React.useState('Tartan');*/
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
 
@@ -32,36 +29,32 @@ const App = () => {
     }
 
     const createRoom = () => {
-        ws.send(JSON.stringify({cmd: 'create', dormId: 1, name: name, status: currState}))
+        ws.send(JSON.stringify({cmd: 'create', dormId: 1, name: userName, status: userState}))
     }
 
     const joinRoom = () => {
-        ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: name, status: currState}))
+        ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: userName, status: userState}))
     }
 
     const togglePop = () => {
         setIsSeen(!isSeen);
     }
-    
+
     const newUserState = (childData) => {
       setCurrState(childData);
     };
+
     const newUserName = (childData) => {
       setName(childData);
     };
-    /*const callbackFunction = (childData) => {
-        setName(childData);
-    };
-    const callbackFunction2 = (childData) => {
-        ws.send(JSON.stringify({cmd: '', message: childData}))
-        setCurrState(childData);
-    };*/
 
     return ( 
             <>
-            <Header parentCallback = {newUserName}/>
-            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
-            <Building/>
+                <Header parentCallback = {newUserName}/>
+                <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
+                <Building/>
+                <button onClick={createRoom}>CREATE</button>
+                <button onClick={joinRoom}>JOIN</button>
             </>
       );
 }
