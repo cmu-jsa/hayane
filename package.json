@@ -24,7 +24,9 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "uuid": "^8.3.2",
+    "ws": "^7.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
