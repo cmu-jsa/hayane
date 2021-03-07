@@ -9,7 +9,6 @@ import Bubble from "./Bubble.js";
 
 const Mado = (props) => {
     const [isSeen, setIsSeen] = React.useState(false);
-    console.log(props.value2)
     
     const images = [working,sleeping,alive,empty];
     const statuses = ["working","sleeping","vibing","not here"];

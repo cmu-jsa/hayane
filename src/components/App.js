@@ -57,12 +57,12 @@ const App = () => {
 
     const newUserState = (childData) => {
       setCurrState(childData);
-      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: userName, status: userState}))
+      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: userName, status: childData, curUuid: uuid}))
     };
 
     const newUserName = (childData) => {
       setName(childData);
-      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: userName, status: userState}))
+      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: childData, status: userState, curUuid: uuid}))
     };
 
     return ( 
