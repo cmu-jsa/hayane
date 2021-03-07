@@ -23,11 +23,12 @@ app.listen(PORT);
 
 wss = new ws.Server({port: 40510})
 
-dorms = {}
+dorms = {1:{}}
 
 wss.on('connection', (socket) => {
     const uuid = uuidv4();
-  
+    socket.send(JSON.stringify({cmd: 'uuid', uuid: uuid}))
+
     const leave = (dormid) => {
         if(!dorms[dormid][uuid]) return;
         if(Object.keys(dorms[dormid]).length === 1) delete dorms[dormid];
@@ -38,8 +39,7 @@ wss.on('connection', (socket) => {
         const { cmd, dormId, name, status } = JSON.parse(data);
         if (cmd === 'create') {
             // Create new dorm
-            // const newDormId = uuidv4();
-            const newDormId = 1;
+            const newDormId = uuidv4();
             dorms[newDormId] = {};
             dorms[dormId][uuid] = {};
             dorms[dormId][uuid]['socket'] = socket;
@@ -62,11 +62,11 @@ wss.on('connection', (socket) => {
                 dorms[dormId][uuid]['data'] = [name, status];
             }
             // Send data about room to uuid
-            let resData = []
-            Object.entries(dorms[dormId]).forEach(([,d]) => {
-                resData.push(d['data'])
+            let resData = {}
+            Object.entries(dorms[dormId]).forEach(([uuid,d]) => {
+                resData[uuid] = d['data']
             });
-            socket.send(JSON.stringify(resData));
+            socket.send(JSON.stringify({cmd: 'joined', data: resData}));
         } else if(cmd === 'leave') {
             leave(dormId);
         } else if(cmd === 'update') {
