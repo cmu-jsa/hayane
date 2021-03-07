@@ -52,10 +52,6 @@ wss.on('connection', (socket) => {
             // Check if the user exists in the room
             else if (dorms[dormId][uuid]) socket.send('already_joined');
             else {
-                // Send info about uuid to room participants
-                Object.entries(dorms[dormId]).forEach(([, d]) => {
-                    d['socket'].send(JSON.stringify({ cmd: 'new', uuid: uuid, name: name, status: status }))
-                });
                 // Join room
                 dorms[dormId][uuid] = {};
                 dorms[dormId][uuid]['socket'] = socket;
@@ -66,7 +62,10 @@ wss.on('connection', (socket) => {
             Object.entries(dorms[dormId]).forEach(([uuid,d]) => {
                 resData[uuid] = d['data']
             });
-            socket.send(JSON.stringify({cmd: 'joined', data: resData}));
+            Object.entries(dorms[dormId]).forEach(([, d]) => {
+                d['socket'].send(JSON.stringify({ cmd: 'update', data: resData }))
+            });
+            socket.send(JSON.stringify({cmd: 'update', data: resData}));
         } else if(cmd === 'leave') {
             leave(dormId);
         } else if(cmd === 'update') {
