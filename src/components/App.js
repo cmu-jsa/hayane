@@ -11,12 +11,33 @@ const paragraph = {
     backgroundColor: 'white',
 };
 
+class User{
+    constructor(uuid, inpArray){
+        this.uuid = uuid;
+        this.data = inpArray;
+    }
+    getUuid(){
+        return this.uuid;
+    }
+    getState(){
+        return this.data[1];
+    }
+    getName(){
+        return this.data[0];
+    }
+    setName(name){
+        this.data[0] = name;
+    }
+    setStatus(status){
+        this.data[1] = status;
+    }
+}
 
 const App = () => {
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
-    const [userNames , setNames] = React.useState(['Tartan','Yuma','Kent','Arnaud']);
-    const [userStates, setStates] = React.useState([0,1,2,1]);
+    let userNames = ['Tartan','Yuma','Kent','Arnaud'];
+    let userStates = [0,1,2,1];
     const hostname = window.location.hostname;
     const ws = new WebSocket('ws://' + hostname + ':40510')
 
