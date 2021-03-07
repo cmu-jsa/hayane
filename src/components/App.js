@@ -31,15 +31,22 @@ const App = () => {
             
         }
         ws.onmessage = (event) => {
-            console.log(event)
+            
             const data = JSON.parse(event.data)
             console.log(data)
             if (data.cmd == 'uuid') {
                 setUuid(data.uuid);
+                console.log("uuid " + data.uuid)
             } 
             else if (data.cmd == 'joined') {
                 setUsers(data.data);
                 // update state
+            } else if (data.cmd == 'new'){
+                console.log("new")
+                console.log( users)
+                const newUuid = data.uuid;
+                setUsers({...users,newUuid:[data.name,data.state]})
+                console.log(users)
             }
         }
     }, []);
