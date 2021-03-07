@@ -19,6 +19,24 @@ const App = () => {
     const [name, setName] = React.useState('hi');
     const [currState, setCurrState] = React.useState(0);
     
+    const ws = new WebSocket('ws://localhost:40510')
+
+    ws.onopen = () => {
+        console.log('connected to websocket')
+    }
+
+    ws.onmessage = (event) => {
+        console.log(JSON.parse(event.data))
+    }
+
+    const createRoom = () => {
+        ws.send(JSON.stringify({cmd: 'create', dormId: 1, name: name, status: currState}))
+    }
+
+    const joinRoom = () => {
+        ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: name, status: currState}))
+    }
+
     const togglePop = () => {
         setIsSeen(!isSeen);
     };
@@ -26,6 +44,7 @@ const App = () => {
         setName(childData);
     };
     const callbackFunction2 = (childData) => {
+        ws.send(JSON.stringify({cmd: '', message: childData}))
         setCurrState(childData);
     };
 
@@ -51,6 +70,8 @@ const App = () => {
             <div>
                 <DropDown name = {name} parentCallback = {callbackFunction2}/>
             </div>
+            <button onClick={createRoom}>CREATE</button>
+            <button onClick={joinRoom}>JOIN</button>
         </div>
       );
 }
