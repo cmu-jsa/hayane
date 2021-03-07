@@ -22,6 +22,7 @@ const App = () => {
 
     ws.onopen = () => {
         console.log('connected to websocket')
+        ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: userName, status: userState}))
     }
 
     ws.onmessage = (event) => {
