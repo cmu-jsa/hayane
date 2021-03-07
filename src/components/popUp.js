@@ -55,10 +55,6 @@ const PopUp = (props) => {
                         
                         <label htmlFor="name_field">Name</label>
                         <input type="text" onChange={evt => updateInputValue(evt)} class="nes-input"/>
-                        <label>
-                            <input type="checkbox" class="nes-checkbox" checked  onChange ={updateInputValue("anonymous")}/>
-                            <span>Enable</span>
-                        </label>
 
                         <input type="submit" onClick={handleClick}/>
                     </div>
