@@ -17,8 +17,8 @@ const App = () => {
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
 
-    
-    const ws = new WebSocket('ws://localhost:40510')
+    const hostname = window.location.hostname;
+    const ws = new WebSocket('ws://' + hostname + ':40510')
 
     ws.onopen = () => {
         console.log('connected to websocket')
