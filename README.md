@@ -4,7 +4,7 @@ Developed by Arnaud Avondet, Joey Wildman, Yuma Matsuoka, and Kent Shibata for T
 
 
 ## Showcases
-Youtube: https://www.youtube.com/watch?v=C5Py7XeBmIg <br/>
+Youtube: https://www.youtube.com/watch?v=npQcLA0skrg <br/>
 Slides: https://docs.google.com/presentation/d/1YwIOO5SlqGOQd77jsLLOTArYBgxlUFLLS4fI9gwJnYQ/edit?usp=sharing
 ### Commands
 Command | Description
