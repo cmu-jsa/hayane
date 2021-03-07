@@ -17,8 +17,6 @@ app.get('/*', (req, res, next) => {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT);
-
 // Websocket server
 
 wss = new ws.Server({port: 40510})
@@ -76,3 +74,5 @@ wss.on('connection', (socket) => {
         }
     });
 });
+
+app.listen(PORT);
