@@ -3,7 +3,7 @@ import Header from "./Header"
 
 import MainBody from "./MainBody";
 import "nes.css/css/nes.min.css";
-
+import Building from "../../public/buildings.svg"
 const paragraph = {
     fontFamily: 'PressStart2PRegular',
     fontWeight: 'normal',
@@ -37,7 +37,7 @@ const App = () => {
             <>
             <Header parentCallback = {newUserName}/>
             <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
-
+            <Building/>
             </>
            
             
