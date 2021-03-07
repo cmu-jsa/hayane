@@ -24,14 +24,7 @@ const styles= {
 const BuildingMadoArray = (props) => {
     let uuids = Object.keys(props.users);
 
-
-
-
-
     return (
-    
-
-      
             <div className = "smallerContainer" style= {styles.smallerContainer}>
                 <br>
                 </br>
@@ -74,11 +67,8 @@ const BuildingMadoArray = (props) => {
                 <br></br><br></br><br></br><br></br><br></br><br></br>
                 <br></br><br></br><br></br>
                 
-            </div>
+            </div> 
+        );     
+};
 
-            
-        
-        );
-      
-}
 export default BuildingMadoArray;

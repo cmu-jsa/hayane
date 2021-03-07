@@ -23,9 +23,10 @@ app.listen(PORT);
 
 wss = new ws.Server({port: 40510})
 
-dorms = {1:{}}
+dorms = {}
 
 wss.on('connection', (socket) => {
+    console.log('New socket')
     const uuid = uuidv4();
     socket.send(JSON.stringify({cmd: 'uuid', uuid: uuid}))
 
@@ -36,15 +37,17 @@ wss.on('connection', (socket) => {
     };
 
     socket.on('message', data => {
-        const { cmd, dormId, name, status, curUuid } = JSON.parse(data);
+        const { cmd, dormId, name, status } = JSON.parse(data);
         if (cmd === 'create') {
             // Create new dorm
             const newDormId = uuidv4();
             dorms[newDormId] = {};
-            dorms[dormId][uuid] = {};
-            dorms[dormId][uuid]['socket'] = socket;
-            dorms[dormId][uuid]['data'] = [name, status];
+            dorms[newDormId][uuid] = {};
+            dorms[newDormId][uuid]['socket'] = socket;
+            dorms[newDormId][uuid]['data'] = [name, status];
             // Send data back
+            console.log(dorms)
+            socket.send(JSON.stringify({cmd: 'created', dormId: newDormId, dorm: {uuid: [name, status]}}))
             socket.send(JSON.stringify([[name, status]]))
         } else if (cmd === 'join') {
             // Check if dorm exists
@@ -59,17 +62,16 @@ wss.on('connection', (socket) => {
             }
             // Send data about room to uuid
             let resData = {}
-            Object.entries(dorms[dormId]).forEach(([uuid,d]) => {
-                resData[uuid] = d['data']
+            Object.entries(dorms[dormId]).forEach(([_uuid,d]) => {
+                resData[_uuid] = d['data']
             });
             Object.entries(dorms[dormId]).forEach(([, d]) => {
                 d['socket'].send(JSON.stringify({ cmd: 'update', data: resData }))
             });
-            socket.send(JSON.stringify({cmd: 'update', data: resData}));
         } else if(cmd === 'leave') {
             leave(dormId);
         } else if(cmd === 'update') {
-            dorms[dormId][[curUuid]]['data'] = [name, status];
+            dorms[dormId][uuid]['data'] = [name, status];
             let resData = {}
             Object.entries(dorms[dormId]).forEach(([_uuid,d]) => {
                 resData[_uuid] = d['data']

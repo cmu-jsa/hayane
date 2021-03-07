@@ -24,15 +24,13 @@ const styles = {
             cursor: 'pointer',
         },
     },
-
-
 }
-
 
 const PopUp = (props) => {
     const [inputValue, setInputValue] = React.useState(props.value);
 
-    const handleClick = () => {
+    const handleClick = (event) => {
+        event.preventDefault();
         props.toggle();
         props.parentCallback(inputValue);
     };
@@ -40,38 +38,31 @@ const PopUp = (props) => {
         setInputValue(evt.target.value);
     };
     const updateAnon = (evt) =>{
-
         setInputValue("Anonymous");
     };
     return (
         <div className="modal" style = {styles.modal}>
-
-      
-        <div class="nes-container is-rounded is-dark" style = {styles.smallerContainer}>
-        
-      
+            <div class="nes-container is-rounded is-dark" style = {styles.smallerContainer}>
                 <span className="close" style={styles.close} onClick={handleClick}>
                     &times;
                 </span>
                 <form>
-                    <h3>Please fill out</h3>
+                    { props.mode == 'room' ? <h3>Enter a room id</h3> : <h3>Please fill out</h3> }
                     <div class="nes-field">
-                        
-                        <label htmlFor="name_field">Name</label>
+                        <label htmlFor="name_field">{ props.mode == 'room' ? 'Room Id' : 'Name' }</label>
                         <input type="text" onChange={evt => updateInputValue(evt)} class="nes-input"/>
-                        <label>
-                                <input type="checkbox" onChange= {evt => updateAnon(evt)} class="nes-checkbox is-dark"  />
-                            <span>Remain Anonymous </span>
-                        </label>
+                        { props.mode == 'room' ? null : 
+                            <label>
+                                <input type="checkbox" onChange= {evt => updateAnon(evt)} class="nes-checkbox is-dark" />
+                                <span>Remain Anonymous </span>
+                            </label>
+                        }
                         <input type="submit" onClick={handleClick}/>
                     </div>
                 </form>
-
-
+            </div>
         </div>
-        </div>
-    );
-      
-}
+    ); 
+};
+
 export default PopUp;
-
