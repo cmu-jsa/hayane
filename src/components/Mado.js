@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import working from '../../public/work.gif';
 import sleeping from '../../public/sleep.gif';
 import alive from '../../public/awake.gif';
+import empty from '../../public/empty.png';
+
 import Bubble from "./Bubble.js";
 
 
@@ -10,8 +12,8 @@ const Mado = (props) => {
     const togglePop = () => {
         setIsSeen(!isSeen);
     };
-    const images = [working,sleeping,alive];
-    const statuses = ["working","sleeping","alive"];
+    const images = [working,sleeping,alive,empty];
+    const statuses = ["working","sleeping","alive","not here"];
     
     //const [currImage, setCurrImage] = React.useState(props.value2);
     return (

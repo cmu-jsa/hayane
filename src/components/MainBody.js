@@ -11,7 +11,7 @@ const white = {
 };
 const MainBody = (props) => {
     const [currState, setCurrState] = React.useState(props.currState);
-    const states = [currState,1,2,1];
+    const states = [currState,1,2,3];
     const names = [props.name,"Yuma","Kent","Arno"];
     const callbackFunction2 = (childData) => {
         setCurrState(childData);

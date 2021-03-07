@@ -15,7 +15,8 @@ const paragraph = {
 const App = () => {
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
-
+    const [userNames , setNames] = React.useState(['Tartan','Yuma','Kent','Arnaud']);
+    const [userStates, setStates] = React.useState([0,1,2,1]);
     const hostname = window.location.hostname;
     const ws = new WebSocket('ws://' + hostname + ':40510')
 
