@@ -3,7 +3,6 @@ import Header from "./Header"
 
 import MainBody from "./MainBody";
 import "nes.css/css/nes.min.css";
-import Building from "../../public/buildings.svg"
 
 const paragraph = {
     fontFamily: 'PressStart2PRegular',
@@ -50,11 +49,12 @@ const App = () => {
 
     return ( 
             <>
-                <Header parentCallback = {newUserName}/>
-                <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
-                <Building/>
-                <button onClick={createRoom}>CREATE</button>
-                <button onClick={joinRoom}>JOIN</button>
+
+            <Header parentCallback = {newUserName}/>
+            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
+             <button onClick={createRoom}>CREATE</button>
+             <button onClick={joinRoom}>JOIN</button>
+
             </>
       );
 }

@@ -4,7 +4,16 @@ import React, { Component } from 'react';
 
 const styles = {
   menu : {
-    width : '15%',
+    width : '25%',
+    position: 'relative',
+    left : '6%',
+    justify : 'left',
+  },
+  menu2 : {
+    //width : '25%',
+    position: 'relative',
+    left : '0%',
+    justify : 'left',
   },
 }
 
@@ -22,8 +31,8 @@ const DropDown = (props) => {
 
   return (
     <div>
-      <button class="nes-btn is-primary" onClick={showMenu}>
-        {props.name}'s status menu
+      <button class="nes-btn is-primary" style = {styles.menu2} onClick={showMenu}>
+        {props.name}'s status
       </button>
       
       {

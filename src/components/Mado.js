@@ -16,7 +16,7 @@ const Mado = (props) => {
     //const [currImage, setCurrImage] = React.useState(props.value2);
     return (
         <div>
-                {isSeen ? <Bubble statusMsg = {statuses[props.value2]} />:null }
+                {isSeen ? <Bubble name = {props.name} statusMsg = {statuses[props.value2]} />:null }
               <img src={images[props.value2]} alt="loading..." onClick={togglePop}/>  
         </div>
     
