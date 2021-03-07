@@ -29,62 +29,42 @@ const styles = {
 }
 
 
+const PopUp = (props) => {
+    const [inputValue, setInputValue] = React.useState(props.value);
 
-export default class popUp extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            inputValue: this.props.value,
-        };
-        console.log(this.props.value);
-    }
-    handleClick = () => {
-        this.props.toggle();
-        this.props.parentCallback(this.state.inputValue);
+    const handleClick = () => {
+        props.toggle();
+        props.parentCallback(inputValue);
     };
-    
-   updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value
-    });
-  }
-    render(){
-        return (
-            <div className="modal" style = {styles.modal}>
+    const updateInputValue = (evt) => {
+        setInputValue(evt.target.value);
+    };
+    return (
+        <div className="modal" style = {styles.modal}>
 
-          
-            <div class="nes-container is-rounded is-dark" style = {styles.smallerContainer}>
-            
-          
-                    <span className="close" style={styles.close} onClick={this.handleClick}>
-                        &times;
-                    </span>
-                    <form>
-                        <h3>Please fill out</h3>
-                        <div class="nes-field">
-                            
-                            <label htmlFor="name_field">Name</label>
-                            <input type="text" onChange={evt => this.updateInputValue(evt)} class="nes-input"/>
-    
-                            <input type="submit" onClick={this.handleClick}/>
-                        </div>
-                    </form>
-   
-    
-            </div>
-            </div>
-        )
-    }
+      
+        <div class="nes-container is-rounded is-dark" style = {styles.smallerContainer}>
+        
+      
+                <span className="close" style={styles.close} onClick={handleClick}>
+                    &times;
+                </span>
+                <form>
+                    <h3>Please fill out</h3>
+                    <div class="nes-field">
+                        
+                        <label htmlFor="name_field">Name</label>
+                        <input type="text" onChange={evt => updateInputValue(evt)} class="nes-input"/>
 
-    
-    
+                        <input type="submit" onClick={handleClick}/>
+                    </div>
+                </form>
 
 
+        </div>
+        </div>
+    );
+      
 }
-/*
-<label>
-                            Name:
-                            <input type="text" name="name"/>
-                            <br />
-                        </label>
-                        <input type="submit" />*/
+export default PopUp;
+

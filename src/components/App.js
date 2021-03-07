@@ -18,10 +18,10 @@ const App = () => {
     const [isSeen, setIsSeen] = React.useState(false);
     const [name, setName] = React.useState('hi');
     const [currState, setCurrState] = React.useState(0);
-    
     const togglePop = () => {
         setIsSeen(!isSeen);
     };
+  
     const callbackFunction = (childData) => {
         setName(childData);
     };
@@ -46,7 +46,7 @@ const App = () => {
             </div>
             {isSeen ? <PopUp  value = {name} parentCallback = {callbackFunction} toggle={togglePop} /> : null}
             <div>
-                <Mado  value2 = {currState}/>
+                <Mado  value2 = {currState} statusMsg = {statusMessage}/>
             </div>
             <div>
                 <DropDown name = {name} parentCallback = {callbackFunction2}/>
