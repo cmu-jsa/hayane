@@ -57,10 +57,12 @@ const App = () => {
 
     const newUserState = (childData) => {
       setCurrState(childData);
+      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: userName, status: userState}))
     };
 
     const newUserName = (childData) => {
       setName(childData);
+      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: userName, status: userState}))
     };
 
     return ( 
@@ -68,8 +70,6 @@ const App = () => {
 
             <Header parentCallback = {newUserName}/>
             <MainBody name = {userName} currState = {userState} parentCallback = {newUserState} users = {users}/>
-             <button onClick={createRoom}>CREATE</button>
-             <button onClick={joinRoom}>JOIN</button>
 
             </>
       );
