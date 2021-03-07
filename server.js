@@ -23,11 +23,12 @@ app.listen(PORT);
 
 wss = new ws.Server({port: 40510})
 
-dorms = {}
+dorms = {1:{}}
 
 wss.on('connection', (socket) => {
     const uuid = uuidv4();
-  
+    socket.send(JSON.stringify({cmd: 'uuid', uuid: uuid}))
+
     const leave = (dormid) => {
         if(!dorms[dormid][uuid]) return;
         if(Object.keys(dorms[dormid]).length === 1) delete dorms[dormid];
@@ -35,11 +36,10 @@ wss.on('connection', (socket) => {
     };
 
     socket.on('message', data => {
-        const { cmd, dormId, name, status } = JSON.parse(data);
+        const { cmd, dormId, name, status, curUuid } = JSON.parse(data);
         if (cmd === 'create') {
             // Create new dorm
-            // const newDormId = uuidv4();
-            const newDormId = 1;
+            const newDormId = uuidv4();
             dorms[newDormId] = {};
             dorms[dormId][uuid] = {};
             dorms[dormId][uuid]['socket'] = socket;
@@ -52,26 +52,30 @@ wss.on('connection', (socket) => {
             // Check if the user exists in the room
             else if (dorms[dormId][uuid]) socket.send('already_joined');
             else {
-                // Send info about uuid to room participants
-                Object.entries(dorms[dormId]).forEach(([, d]) => {
-                    d['socket'].send(JSON.stringify({ cmd: 'new', uuid: uuid, name: name, status: status }))
-                });
                 // Join room
                 dorms[dormId][uuid] = {};
                 dorms[dormId][uuid]['socket'] = socket;
                 dorms[dormId][uuid]['data'] = [name, status];
             }
             // Send data about room to uuid
-            let resData = []
-            Object.entries(dorms[dormId]).forEach(([,d]) => {
-                resData.push(d['data'])
+            let resData = {}
+            Object.entries(dorms[dormId]).forEach(([uuid,d]) => {
+                resData[uuid] = d['data']
             });
-            socket.send(JSON.stringify(resData));
+            Object.entries(dorms[dormId]).forEach(([, d]) => {
+                d['socket'].send(JSON.stringify({ cmd: 'update', data: resData }))
+            });
+            socket.send(JSON.stringify({cmd: 'update', data: resData}));
         } else if(cmd === 'leave') {
             leave(dormId);
         } else if(cmd === 'update') {
+            dorms[dormId][[curUuid]]['data'] = [name, status];
+            let resData = {}
+            Object.entries(dorms[dormId]).forEach(([_uuid,d]) => {
+                resData[_uuid] = d['data']
+            });
             Object.entries(dorms[dormId]).forEach(([, d]) => {
-                d['socket'].send(JSON.stringify({ cmd: 'update', uuid: uuid, name: name, status: status }))
+                d['socket'].send(JSON.stringify({ cmd: 'update', data: resData }))
             });
         }
     });

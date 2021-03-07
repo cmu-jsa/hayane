@@ -12,20 +12,36 @@ const paragraph = {
 };
 
 
+
 const App = () => {
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
+    const [uuid, setUuid] = React.useState(0);
+    let userNames = ['Yuma','Tartan','Kent','Arnaud'];
+    let userStates = [3,1,3,3];
+    const [users, setUsers] = React.useState({});
 
     const hostname = window.location.hostname;
     const ws = new WebSocket('ws://' + hostname + ':40510')
 
-    ws.onopen = () => {
-        console.log('connected to websocket')
-    }
+    React.useEffect(() => {
+        ws.onopen = () => {
+            console.log('connected to websocket')
+            ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: userName, status: userState}))
+        }
+        ws.onmessage = (event) => {   
+            const data = JSON.parse(event.data)
+            if (data.cmd == 'uuid') {
+                setUuid(data.uuid);
+            } else if (data.cmd == 'update') {
+                setUsers(data.data);
+            }
+        }
+    }, []);
 
-    ws.onmessage = (event) => {
-        console.log(JSON.parse(event.data))
-    }
+    
+
+    
 
     const createRoom = () => {
         ws.send(JSON.stringify({cmd: 'create', dormId: 1, name: userName, status: userState}))
@@ -41,19 +57,19 @@ const App = () => {
 
     const newUserState = (childData) => {
       setCurrState(childData);
+      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: userName, status: childData, curUuid: uuid}))
     };
 
     const newUserName = (childData) => {
       setName(childData);
+      ws.send(JSON.stringify({cmd: 'update', dormId: 1, name: childData, status: userState, curUuid: uuid}))
     };
 
     return ( 
             <>
 
             <Header parentCallback = {newUserName}/>
-            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
-             <button onClick={createRoom}>CREATE</button>
-             <button onClick={joinRoom}>JOIN</button>
+            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState} users = {users}/>
 
             </>
       );

@@ -39,6 +39,10 @@ const PopUp = (props) => {
     const updateInputValue = (evt) => {
         setInputValue(evt.target.value);
     };
+    const updateAnon = (evt) =>{
+
+        setInputValue("Anonymous");
+    };
     return (
         <div className="modal" style = {styles.modal}>
 
@@ -55,7 +59,10 @@ const PopUp = (props) => {
                         
                         <label htmlFor="name_field">Name</label>
                         <input type="text" onChange={evt => updateInputValue(evt)} class="nes-input"/>
-
+                        <label>
+                                <input type="checkbox" onChange= {evt => updateAnon(evt)} class="nes-checkbox is-dark"  />
+                            <span>Remain Anonymous </span>
+                        </label>
                         <input type="submit" onClick={handleClick}/>
                     </div>
                 </form>

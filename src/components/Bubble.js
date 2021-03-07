@@ -13,11 +13,12 @@ const styles= {
 
 const Bubble = (props) => {
     
+    const statuses = ["working","sleeping","vibing","not here"];
     return (
         <section class="message -right">
       
         <div class="nes-balloon from-right is-dark" style={styles.ihatemyself}>
-          <p>{props.name} is {props.statusMsg}</p>
+          <p>{props.name ? props.name : "No one"} is {props.statusMsg != 3 ? statuses[props.statusMsg] : "here"}</p>
         </div>
        
       </section>

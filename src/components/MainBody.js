@@ -11,8 +11,24 @@ const white = {
 };
 const MainBody = (props) => {
     const [currState, setCurrState] = React.useState(props.currState);
-    const states = [currState,1,2,1];
-    const names = [props.name,"Yuma","Kent","Arno"];
+    const states = props.states;
+    /*
+    if (props.name != props.names[0]){
+        let i = 0;
+        let pos = 0;
+        while (i < 4) {
+            if (props.name == props.names[i]){
+                pos = i;
+            }
+            i++;
+        }
+        props.names[pos] = props.names[0];
+        props.names[0] = props.name;
+        props.states[pos] = props.states[0];
+        props.states[0] = props.currState;
+    }*/
+
+    const names = props.names;
     const callbackFunction2 = (childData) => {
         setCurrState(childData);
         props.parentCallback(childData);
@@ -22,7 +38,7 @@ const MainBody = (props) => {
         <>
          
             <div>
-                <BuildingMadoArray value = {states} nameList = {names}/>
+                <BuildingMadoArray users = {props.users}/>
                 
             </div>
             <div>

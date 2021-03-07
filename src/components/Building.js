@@ -22,7 +22,12 @@ const styles= {
     },
 }
 const BuildingMadoArray = (props) => {
-    
+    let uuids = Object.keys(props.users);
+
+
+
+
+
     return (
     
 
@@ -39,11 +44,13 @@ const BuildingMadoArray = (props) => {
                 <br></br><br></br>
                 <div style = {styles.divStyle}>
                     <div style={styles.firstR}>
-                        <Mado value2 = {props.value[0]} name = {props.nameList[0]} />
+                        {uuids.length > 0 ? <Mado value2 = {props.users[uuids[0]][1]} name = {props.users[uuids[0]][0]}/> : 
+                        <Mado value2 = {3} name = {""}/>} 
                     </div>
                     
                     <div style={styles.secondR}>
-                     <Mado value2 = {props.value[1]}  name = {props.nameList[1]}  />
+                    {uuids.length > 1 ? <Mado value2 = {props.users[uuids[1]][1]} name = {props.users[uuids[1]][0]}/> : 
+                        <Mado value2 = {3} name = {""}/>} 
                     </div>
 
                 </div>
@@ -51,11 +58,13 @@ const BuildingMadoArray = (props) => {
                 <br></br><br></br><br></br><br></br>
                 <div style = {styles.divStyle}>
                     <div style={styles.firstR}>
-                        <Mado value2 = {props.value[2]} name = {props.nameList[2]}/>
+                    {uuids.length > 2 ? <Mado value2 = {props.users[uuids[2]][1]} name = {props.users[uuids[2]][0]}/> : 
+                        <Mado value2 = {3} name = {""}/>} 
                     </div>
                     
                     <div style={styles.secondR}>
-                     <Mado value2 = {props.value[3]} name = {props.nameList[3]}/>
+                    {uuids.length > 3 ? <Mado value2 = {props.users[uuids[3]][1]} name = {props.users[uuids[3]][0]}/> : 
+                        <Mado value2 = {3} name = {""}/>} 
                     </div>
                    
                     
