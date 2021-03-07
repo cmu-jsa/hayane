@@ -3,7 +3,7 @@ import Building from "../../public/building.png"
 import Mado from "./Mado"
 
 const styles= {
-    firstR :{left: '25%', position: 'relative', float: 'left'},
+    firstR :{left: '28%', position: 'relative', float: 'left'},
     secondR :{left: '55%', position: 'relative', float: 'left'},
     thirdR :{left: '66%', position: 'relative', float: 'left'},
      divStyle : {
