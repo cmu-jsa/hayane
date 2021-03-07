@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import working from '../../public/work.gif';
 import sleeping from '../../public/sleep.gif';
 import alive from '../../public/awake.gif';
+
 const styles = {
     modal: {
         position: 'fixed',
