@@ -1,8 +1,9 @@
 import React from 'react';
-import PopUp from "./popUp";
-import DropDown from "./DropDown";
-import Mado from "./Mado";
+import Header from "./Header"
+
+import MainBody from "./MainBody";
 import "nes.css/css/nes.min.css";
+import Building from "../../public/buildings.svg"
 
 const paragraph = {
     fontFamily: 'PressStart2PRegular',
@@ -10,27 +11,41 @@ const paragraph = {
     fontStyle: 'normal',
     backgroundColor: 'white',
 };
-const white = {
-  backgroundColor: 'white',
-};
+
 
 const App = () => {
-    const [isSeen, setIsSeen] = React.useState(false);
-    const [name, setName] = React.useState('hi');
-    const [currState, setCurrState] = React.useState(0);
+
+    /*const [isSeen, setIsSeen] = React.useState(false);
+    const [name, setName] = React.useState('Tartan');*/
+    const [userName, setName] = React.useState('Tartan');
+    const [userState, setCurrState] = React.useState(0);
+
     
-    const togglePop = () => {
-        setIsSeen(!isSeen);
+    const newUserState = (childData) => {
+      setCurrState(childData);
     };
-    const callbackFunction = (childData) => {
+    const newUserName = (childData) => {
+      setName(childData);
+    };
+    /*const callbackFunction = (childData) => {
         setName(childData);
     };
     const callbackFunction2 = (childData) => {
         setCurrState(childData);
-    };
+    };*/
 
     return ( 
-        <div className="game">
+            <>
+            <Header parentCallback = {newUserName}/>
+            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
+            <Building/>
+            </>
+           
+            
+   
+      );
+}
+/*<div className="game">
             <div className="btn" >
                 <button className = "nes-btn is-primary" onClick = {togglePop}>Edit your info</button>
             </div>
@@ -40,19 +55,11 @@ const App = () => {
                     <p style = {paragraph}> HI, {name}! Good morning. Thou hast had a good night's sleep, I hope.  </p>
                 </div>
             </div>
-            <div className="game-info">
-                <div>{/* status */}</div>
-                <ol>{/* TODO */}</ol>
-            </div>
-            {isSeen ? <PopUp  value = {name} parentCallback = {callbackFunction} toggle={togglePop} /> : null}
             <div>
                 <Mado  value2 = {currState}/>
             </div>
             <div>
-                <DropDown name = {name} parentCallback = {callbackFunction2}/>
+                <DropDown name = {userName} parentCallback = {newUserState}/>
             </div>
-        </div>
-      );
-}
-
+            </>*/
 export default App;

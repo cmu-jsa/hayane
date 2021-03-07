@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="249.708" y1="348.435" x2="249.708" y2="450.426" id="gradient-0" gradientTransform="matrix(0.999957, 0.002515, -0.008844, 0.260843, 3.092365, 256.920334)">
+      <stop offset="0" style="stop-color: rgba(53, 141, 84, 1)"/>
+      <stop offset="1" style="stop-color: rgba(25, 67, 40, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="250" y1="375" x2="250" y2="448.136" id="gradient-1">
+      <stop offset="0" style="stop-color: rgba(126, 89, 64, 1)"/>
+      <stop offset="1" style="stop-color: rgba(58, 41, 30, 1)"/>
+    </linearGradient>
+    <path id="path-0" style="fill: none;" d="M 87.181 19.418 C 117.161 26.374 126.234 28.281 134.953 31.679 C 156.155 35.401 174.657 35.494 193.653 37.419 C 211.298 37.419 223.892 39.624 236.804 39.624 C 257.501 39.624 273.368 35.4 290.633 33.229 C 302.935 31.297 312.216 29.654 321.457 27.625 C 334.834 24.842 343.318 22.628 351.814 16.226 C 356.286 11.327 356.676 7.431 358.622 3.491 L 359.204 2.902 C 362.258 0.948 367.905 -1.542 362.897 -1.542"/>
+    <path id="path-1" d="M 107.236 56.09 C 140.965 56.09 168.255 56.09 195.545 56.09 C 224.174 56.09 242.973 56.09 261.771 56.09 C 279.033 56.09 292.444 56.59 305.817 56.59 C 314.93 56.59 321.06 56.296 327.113 56.296 C 331.949 56.296 335.437 55.412 339.2 55.412 L 339.491 55.412 C 340.728 55.412 341.965 55.412 343.203 55.412" style="fill: none;"/>
+  </defs>
+  <rect y="56" width="382" height="300" style="fill: rgb(210, 204, 222);" x="56"/>
+  <rect x="56" y="30" width="382" height="40" style="fill: rgb(247, 221, 221);"/>
+  <rect x="216.197" y="237.456" width="71.539" height="113.121" style="fill: rgb(214, 170, 170);"/>
+  <circle style="fill: rgb(54, 83, 77);" cx="268.774" cy="288.521" r="8.994"/>
+  <rect x="0" y="348.435" width="500" height="27.776" style="fill: url(#gradient-0);"/>
+  <rect x="0" y="375" width="500" height="73.136" style="fill: url(#gradient-1);"/>
+</svg>

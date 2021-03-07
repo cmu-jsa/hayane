@@ -8,51 +8,38 @@ const styles = {
   },
 }
 
-export default class DropDown extends Component {
+const DropDown = (props) => {
+  const [isSeen,setIsSeen] = React.useState(false);
 
-    constructor() {
-        super();
-        
-        this.state = {
-          showMenu: false,
-        };
-        
-        this.showMenu = this.showMenu.bind(this);
-       
-      }
+  const showMenu = (event) => {
+    event.preventDefault();
+    setIsSeen(!isSeen);
+  };
+  
+  const handleClick = (val) => {
+    props.parentCallback(val);
+  };
 
-      showMenu(event) {
-        event.preventDefault();
-        
-        this.setState({showMenu: !this.state.showMenu 
-        });
-      }
+  return (
+    <div>
+      <button class="nes-btn is-primary" onClick={showMenu}>
+        {props.name}'s status menu
+      </button>
       
-      handleClick = (val) => {
-        this.props.parentCallback(val);
+      {
+        isSeen
+          ? (
+            <div className="menu" style = {styles.menu}>
+              <button class="nes-btn is-primary" onClick = {() => handleClick(0)}> Working </button>
+              <button class="nes-btn is-primary" onClick = {() => handleClick(1)}> Sleeping </button>
+              <button class="nes-btn is-primary" onClick = {() => handleClick(2)}> Vibing </button>
+            </div>
+          )
+          : (
+            null
+          )
       }
-
-      render() {
-        return (
-          <div>
-            <button class="nes-btn is-primary" onClick={this.showMenu}>
-              {this.props.name}'s status menu
-            </button>
-            
-            {
-              this.state.showMenu
-                ? (
-                  <div className="menu" style = {styles.menu}>
-                    <button class="nes-btn is-primary" onClick = {() => this.handleClick(0)}> Working </button>
-                    <button class="nes-btn is-primary" onClick = {() => this.handleClick(1)}> Sleeping </button>
-                    <button class="nes-btn is-primary" onClick = {() => this.handleClick(2)}> Vibing </button>
-                  </div>
-                )
-                : (
-                  null
-                )
-            }
-          </div>
-        );
-      }
+    </div>
+  );
 }
+export default DropDown;
