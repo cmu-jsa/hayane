@@ -13,6 +13,7 @@ const styles= {
 
 const Bubble = (props) => {
     
+
     return (
         <section class="message -right">
       

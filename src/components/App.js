@@ -36,14 +36,22 @@ class User{
 const App = () => {
     const [userName, setName] = React.useState('Tartan');
     const [userState, setCurrState] = React.useState(0);
-    let userNames = ['Tartan','Yuma','Kent','Arnaud'];
-    let userStates = [0,1,2,1];
+    const [userId, setUserState] = React.useState("");
+    let userNames = ['Yuma','Tartan','Kent','Arnaud'];
+    let userStates = [3,1,3,3];
     const hostname = window.location.hostname;
     const ws = new WebSocket('ws://' + hostname + ':40510')
 
     ws.onopen = () => {
         console.log('connected to websocket')
         ws.send(JSON.stringify({cmd: 'join', dormId: 1, name: userName, status: userState}))
+        d = {"Tartan":1,"Test":2,"e":3,"a":0};
+        let i = 0;
+        for (var key in d){
+            userNames[i] = d[key][0];
+            userStates[i] = d[key][1];
+        }
+        i++;
     }
 
     ws.onmessage = (event) => {
@@ -74,7 +82,7 @@ const App = () => {
             <>
 
             <Header parentCallback = {newUserName}/>
-            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState}/>
+            <MainBody name = {userName} currState = {userState} parentCallback = {newUserState} names = {userNames} states = {userStates}/>
              <button onClick={createRoom}>CREATE</button>
              <button onClick={joinRoom}>JOIN</button>
 
